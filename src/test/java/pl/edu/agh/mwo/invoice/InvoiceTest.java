@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import pl.edu.agh.mwo.invoice.Invoice;
 import pl.edu.agh.mwo.invoice.product.DairyProduct;
 import pl.edu.agh.mwo.invoice.product.OtherProduct;
 import pl.edu.agh.mwo.invoice.product.Product;
@@ -125,9 +124,45 @@ public class InvoiceTest {
     public void testAddingNullProduct() {
         invoice.addProduct(null);
     }
-    
 
+    @Test
+    public void testInvoiceHasNumberGreaterThan0() {
+        int number = invoice.getNumber();
+        Assert.assertThat(number, Matchers.greaterThan(0));
+    }
 
+    @Test
+    public void testTwoInvoicesHaveDifferentNumbers() {
+        int number1 = new Invoice().getNumber();
+        int number2 = new Invoice().getNumber();
+        Assert.assertNotEquals(number1, number2);
+    }
+    @Test
+    public void testInvoiceDoesNotChangeItsNumber() {
+        Assert.assertEquals(invoice.getNumber(), invoice.getNumber());
+    }
 
+    @Test
+    public void testTheFirstInvoiceNumberIsLowerThanTheSecond() {
+        int number1 = new Invoice().getNumber();
+        int number2 = new Invoice().getNumber();
+        Assert.assertThat(number1, Matchers.lessThan(number2));
+    }
+
+    @Test
+    public void testPrintInvoiceAsString(){
+        Assert.assertTrue ( new Invoice().printInvoice() instanceof String);
+    }
+
+//    @Test
+//    public void testListOfProducts() {
+//
+//        String expectedResults = "Owoce, Maslanka, Wino";
+//        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("200")));
+//        invoice.addProduct(new DairyProduct("Maslanka", new BigDecimal("100")));
+//        invoice.addProduct(new OtherProduct("Wino", new BigDecimal("10")));
+//        String listOfProducts = new Invoice().printInvoice();
+//        Assert.assertEquals(expectedResults, new Invoice().printInvoice());
+//    }
 
 }

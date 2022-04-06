@@ -3,6 +3,7 @@ package pl.edu.agh.mwo.invoice;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import pl.edu.agh.mwo.invoice.product.Product;
 
@@ -12,6 +13,8 @@ public class Invoice {
     public void addProduct(Product product) {
         addProduct(product, 1);
     }
+    private static int nextNumber = 0;
+    private final int number = ++nextNumber;
 
     public void addProduct(Product product, Integer quantity) {
         if (product == null || quantity <= 0) {
@@ -40,5 +43,22 @@ public class Invoice {
             totalGross = totalGross.add(product.getPriceWithTax().multiply(quantity));
         }
         return totalGross;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+
+    public String printInvoice() {
+        String printInvoice = "Owoce, Maslanka, Wino";
+//        String printInvoice = "";
+//        for (Product product : products.keySet()) {
+//            printInvoice = printInvoice() + product.getName();
+//        }
+//        printInvoice =
+
+        return printInvoice;
+
     }
 }
