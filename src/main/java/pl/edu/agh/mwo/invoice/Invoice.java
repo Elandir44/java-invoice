@@ -1,6 +1,7 @@
 package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -51,14 +52,18 @@ public class Invoice {
 
 
     public String printInvoice() {
-        String printInvoice = "Owoce, Maslanka, Wino";
+//        String printInvoice = = "Owoce Maslanka Wino";
 //        String printInvoice = "";
-//        for (Product product : products.keySet()) {
-//            printInvoice = printInvoice() + product.getName();
-//        }
-//        printInvoice =
 
+        String printInvoice = "Nr FAKTURY: " + getNumber() + "\n";
+
+        for (Product product : products.keySet()){
+           printInvoice = printInvoice + product.getName() + " szt: " + products.get(product) + ", cena/szt: " + product.getPrice() +" zł" + "\n";
+        }
+
+        printInvoice += "Liczba pozycji: " + this.products.size();
         return printInvoice;
 
     }
+
 }

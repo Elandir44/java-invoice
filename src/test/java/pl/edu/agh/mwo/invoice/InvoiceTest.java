@@ -154,15 +154,53 @@ public class InvoiceTest {
         Assert.assertTrue ( new Invoice().printInvoice() instanceof String);
     }
 
-//    @Test
-//    public void testListOfProducts() {
-//
-//        String expectedResults = "Owoce, Maslanka, Wino";
-//        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("200")));
-//        invoice.addProduct(new DairyProduct("Maslanka", new BigDecimal("100")));
-//        invoice.addProduct(new OtherProduct("Wino", new BigDecimal("10")));
-//        String listOfProducts = new Invoice().printInvoice();
-//        Assert.assertEquals(expectedResults, new Invoice().printInvoice());
-//    }
+    @Test
+    //ten test nie jest dobrym testem jednostkowym, bo nie przejdzie po zaimplementowniu całości,
+    // ale pomoże mi zrobić krok w implementacji. W zasadzie ten test powinien być zakomentowny.
+    public void testPrintHead(){
+        String expectedResults = "Nr FAKTURY: " + invoice.getNumber() + "\n";
+        Assert.assertEquals(expectedResults, invoice.printInvoice());
+    }
+
+    @Test  //j.w.
+    public void testListOfProducts() {
+        Invoice invoice = new Invoice();
+        String expectedResults = "Owoce Maslanka Wino";
+        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("200")), 1);
+        invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 1);
+        invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 1);
+        Assert.assertEquals(expectedResults, invoice.printInvoice());
+    }
+
+    @Test //j.w.
+    public void testPrintInvoiceFooter() {
+        Invoice invoice = new Invoice();
+        String expectedResults = "Liczba pozycji: 3";
+        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("200")), 1);
+        invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 1);
+        invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 1);
+        Assert.assertEquals(expectedResults, invoice.printInvoice());
+    }
+
+    @Test // j.w.
+    public void testListOfProductsWithPrice() {
+        Invoice invoice = new Invoice();
+        String expectedResults = "Maslanka cena: 100 zł Owoce cena: 200 zł Wino cena: 10 zł ";
+
+        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("200")), 1);
+        invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 1);
+        invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 1);
+        Assert.assertEquals(expectedResults, invoice.printInvoice());
+    }
+    @Test
+    public void testPrintInvoiceTotal() {
+        Invoice invoice = new Invoice();
+        String expectedResults = "Nr FAKTURY: " + invoice.getNumber() + "\n" + "Maslanka szt: 3, cena/szt: 100 zł" + "\n" + "Owoce szt: 5, cena/szt: 200 zł" + "\n" +  "Wino szt: 10, cena/szt: 10 zł" + "\n" +  "Liczba pozycji: 3";
+
+        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("200")), 5);
+        invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 3);
+        invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 10);
+        Assert.assertEquals(expectedResults, invoice.printInvoice());
+    }
 
 }
