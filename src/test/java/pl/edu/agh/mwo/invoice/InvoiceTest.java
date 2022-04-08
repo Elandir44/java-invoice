@@ -191,7 +191,7 @@ public class InvoiceTest {
         invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 1);
         invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 1);
         Assert.assertEquals(expectedResults, invoice.printInvoice());
-    }*/
+    }
 
     @Test
     public void testPrintInvoiceTotal() {
@@ -202,6 +202,6 @@ public class InvoiceTest {
         invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 3);
         invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 10);
         Assert.assertEquals(expectedResults, invoice.printInvoice());
-    }
+    }*/
 
 }
