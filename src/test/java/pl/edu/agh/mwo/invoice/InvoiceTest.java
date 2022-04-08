@@ -191,17 +191,18 @@ public class InvoiceTest {
         invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 1);
         invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 1);
         Assert.assertEquals(expectedResults, invoice.printInvoice());
-    }
+    }*/
+
+
 
     @Test
     public void testPrintInvoiceTotal() {
         Invoice invoice = new Invoice();
-        String expectedResults = "Nr FAKTURY: " + invoice.getNumber() + "\n" + "Maslanka szt: 3, cena/szt: 100 zł" + "\n" + "Owoce szt: 5, cena/szt: 200 zł" + "\n" +  "Wino szt: 10, cena/szt: 10 zł" + "\n" +  "Liczba pozycji: 3";
+        String expectedResults = "Nr FAKTURY: " + invoice.getNumber() + "\n" + "Maslanka szt: 3, cena/szt: 100 zł" + "\n" + "Owoce szt: 5, cena/szt: 200 zł" + "\n" +  "Liczba pozycji: 2";
 
-        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("200")), 5);
         invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 3);
-        invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 10);
+        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("200")), 5);
         Assert.assertEquals(expectedResults, invoice.printInvoice());
-    }*/
+    }
 
 }
