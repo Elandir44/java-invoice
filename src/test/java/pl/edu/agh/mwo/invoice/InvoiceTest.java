@@ -154,7 +154,7 @@ public class InvoiceTest {
         Assert.assertTrue ( new Invoice().printInvoice() instanceof String);
     }
 
-    @Test
+  /*  @Test
     //ten test nie jest dobrym testem jednostkowym, bo nie przejdzie po zaimplementowniu całości,
     // ale pomoże mi zrobić krok w implementacji. W zasadzie ten test powinien być zakomentowny.
     public void testPrintHead(){
@@ -191,7 +191,8 @@ public class InvoiceTest {
         invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 1);
         invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 1);
         Assert.assertEquals(expectedResults, invoice.printInvoice());
-    }
+    }*/
+
     @Test
     public void testPrintInvoiceTotal() {
         Invoice invoice = new Invoice();
