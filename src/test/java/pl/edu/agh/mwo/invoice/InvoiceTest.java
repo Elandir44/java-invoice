@@ -149,12 +149,12 @@ public class InvoiceTest {
         Assert.assertThat(number1, Matchers.lessThan(number2));
     }
 
-    @Test
+   /* @Test
     public void testPrintInvoiceAsString(){
         Assert.assertTrue ( new Invoice().printInvoice() instanceof String);
     }
 
-  /*  @Test
+    @Test
     //ten test nie jest dobrym testem jednostkowym, bo nie przejdzie po zaimplementowniu całości,
     // ale pomoże mi zrobić krok w implementacji. W zasadzie ten test powinien być zakomentowny.
     public void testPrintHead(){
