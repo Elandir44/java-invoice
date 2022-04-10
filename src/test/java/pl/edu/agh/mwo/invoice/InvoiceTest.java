@@ -149,10 +149,10 @@ public class InvoiceTest {
         Assert.assertThat(number1, Matchers.lessThan(number2));
     }
 
-  @Test
-    public void testPrintInvoiceAsString(){
-        Assert.assertTrue ( new Invoice().printInvoice() instanceof String);
-    }
+//  @Test
+//    public void testPrintInvoiceAsString(){
+//        Assert.assertTrue ( new Invoice().printInvoice() instanceof String);
+//    }
 
     /*  @Test
     //ten test nie jest dobrym testem jednostkowym, bo nie przejdzie po zaimplementowniu całości,
@@ -191,16 +191,19 @@ public class InvoiceTest {
         invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 1);
         invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 1);
         Assert.assertEquals(expectedResults, invoice.printInvoice());
-    }
+    }}*/
 
     @Test
     public void testPrintInvoiceTotal() {
         Invoice invoice = new Invoice();
-        String expectedResults = "Nr FAKTURY: " + invoice.getNumber() + "\n" + "Maslanka szt: 3, cena/szt: 100 zł" + "\n" + "Owoce szt: 5, cena/szt: 200 zł" + "\n" +  "Liczba pozycji: 2";
+        String expectedResults = "Nr FAKTURY: " + invoice.getNumber() + "\n" + "Maslanka szt: 3, cena/szt: 200 zł" + "\n" + "Owoce szt: 5, cena/szt: 100 zł" + "\n" + "Wino szt: 8, cena/szt: 10 zł" + "\n" + "Liczba pozycji: 3";
 
-        invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("100")), 3);
-        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("200")), 5);
+        invoice.addProduct(new TaxFreeProduct("Maslanka", new BigDecimal("200")), 3);
+        invoice.addProduct(new TaxFreeProduct("Owoce", new BigDecimal("100")), 5);
+        invoice.addProduct(new TaxFreeProduct("Wino", new BigDecimal("10")), 8);
         Assert.assertEquals(expectedResults, invoice.printInvoice());
-    }*/
+    }
+
+
 
 }
